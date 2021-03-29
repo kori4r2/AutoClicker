@@ -36,7 +36,7 @@ struct ClickArgs{
 
 void *ClickLoop(void *active){
 	ClickArgs *args = (ClickArgs*)active;
-	cout << "thread started with args" << args->isActive << ", " << args->isClicking << ", " << args->delayInMs << "\n";
+	cout << "thread started with args " << args->isActive << ", " << args->isClicking << ", " << args->delayInMs << "\n";
 
 	while(args->isActive){
 		if(!args->isClicking){
@@ -69,7 +69,7 @@ int main(int argc, char *argv[]){
 
 	clickArgs.isActive = true;
 	clickArgs.isClicking = false;
-	clickArgs.delayInMs = 500;
+	clickArgs.delayInMs = 100;
 	clickArgs.mutex = PTHREAD_MUTEX_INITIALIZER;
 	clickArgs.condition = PTHREAD_COND_INITIALIZER;
 	clickArgs.display = display;
@@ -95,8 +95,8 @@ int main(int argc, char *argv[]){
 					pthread_cond_signal(&(clickArgs.condition));
 				}
 			}else if(event.xkey.keycode == keycodeF8){
-				cout << "toggle\n";
 				clickArgs.isClicking = !clickArgs.isClicking;
+				cout << "toggled " << (clickArgs.isClicking? "on" : "off") << "\n";
 				if(clickArgs.isClicking){
 					pthread_cond_signal(&(clickArgs.condition));
 				}
