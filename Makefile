@@ -1,4 +1,4 @@
-# Italo Tobler Silva		 nUSP - 8551910
+# Italo Tobler Silva
 # Makefile for project containing C and C++ files
 CFLAGS = -g -Wall
 CPPFLAGS = -g -Wall
